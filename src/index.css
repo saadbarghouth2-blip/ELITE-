@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+/* Arabic font fallbacks */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+/* Ensure Arabic font is applied globally */
+* {
+  font-family: inherit;
+}
+
+/* Force Arabic text direction and encoding */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] * {
+  text-align: inherit;
+}
+
+/* Ensure all Arabic text uses proper font */
+.font-arabic,
+.font-arabicBody {
+  font-family: 'Noto Kufi Arabic', 'Tajawal', 'Segoe UI', 'Tahoma', sans-serif !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 45 65% 52%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 45 65% 52%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 45 65% 52%;
+    --radius: 0.625rem;
+    
+    --gold: #d4af37;
+    --gold-dark: #b8941f;
+    --gold-light: #e5c76b;
+    --dark: #0a0a0a;
+    --dark-gray: #1a1a1a;
+    --medium-gray: #2d2d2d;
+    
+    --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+  }
+  
+  body {
+    @apply bg-dark text-white font-arabic antialiased;
+    overflow-x: hidden;
+    font-family: 'Noto Kufi Arabic', 'Tajawal', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  ::selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: white;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  }
+  
+  .border-gradient-gold {
+    border-image: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark)) 1;
+  }
+  
+  .glassmorphism {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  .glassmorphism-light {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s var(--ease-expo-out), box-shadow 0.3s var(--ease-expo-out);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  }
+  
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  
+  .gold-glow-hover:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(212, 175, 55, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  .section-padding {
+    @apply py-20 md:py-28 px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .nav-contrast,
+  .nav-contrast * {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.95),
+      0 2px 8px rgba(0, 0, 0, 0.9),
+      0 0 14px rgba(0, 0, 0, 0.8);
+  }
+
+  .nav-contrast svg {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Custom Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .section-padding {
+    @apply py-16 px-4;
+  }
+}
+
+/* Make dark backgrounds translucent so page photos تظهر */
+.bg-dark       { background-color: rgba(0, 0, 0, 0.70) !important; }
+.bg-dark-800   { background-color: rgba(0, 0, 0, 0.70) !important; }
+.bg-dark-700   { background-color: rgba(0, 0, 0, 0.60) !important; }
+.bg-dark-600   { background-color: rgba(0, 0, 0, 0.55) !important; }
+
+@media (max-width: 768px) {
+  .bg-dark     { background-color: rgba(0, 0, 0, 0.82) !important; }
+  .bg-dark-800 { background-color: rgba(0, 0, 0, 0.82) !important; }
+  .bg-dark-700 { background-color: rgba(0, 0, 0, 0.74) !important; }
+  .bg-dark-600 { background-color: rgba(0, 0, 0, 0.68) !important; }
+}
